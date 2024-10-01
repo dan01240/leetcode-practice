@@ -1,18 +1,20 @@
-// Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each unique element appears only once. The relative order of the elements should be kept the same. Then return the number of unique elements in nums.
+// Given an integer array nums sorted in non-decreasing order, remove some duplicates in-place such that each unique element appears at most twice. The relative order of the elements should be kept the same.
 
-// Consider the number of unique elements of nums to be k, to get accepted, you need to do the following things:
+// Since it is impossible to change the length of the array in some languages, you must instead have the result be placed in the first part of the array nums. More formally, if there are k elements after removing the duplicates, then the first k elements of nums should hold the final result. It does not matter what you leave beyond the first k elements.
 
-// Change the array nums such that the first k elements of nums contain the unique elements in the order they were present in nums initially. The remaining elements of nums are not important as well as the size of nums.
-// Return k.
+// Return k after placing the final result in the first k slots of nums.
+
+// Do not allocate extra space for another array. You must do this by modifying the input array in-place with O(1) extra memory.
 
 function removeDuplicates(nums: number[]): number {
-  let k = 0;
-  for (let i = 0; i < nums.length; i++) {
-    if (nums[i] !== nums[i + 1]) {
-      nums[k] = nums[i];
-      k++;
+  let writerPointer = 0;
+  for (let readPointer = 0; readPointer < nums.length; readPointer++) {
+    if (writerPointer < 2 || nums[readPointer] !== nums[writerPointer - 2]) {
+      nums[writerPointer] = nums[readPointer];
+      writerPointer++;
     }
   }
-  return k;
+  return writerPointer;
 }
-console.log(removeDuplicates([1, 1, 2]));
+
+console.log(removeDuplicates([1, 1, 1, 2, 2, 3]));
