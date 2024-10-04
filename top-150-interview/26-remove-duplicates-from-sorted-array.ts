@@ -8,12 +8,14 @@
 
 function removeDuplicates(nums: number[]): number {
   let writerPointer = 0;
-  for (let readPointer = 0; readPointer < nums.length; readPointer++) {
-    if (writerPointer < 2 || nums[readPointer] !== nums[writerPointer - 2]) {
-      nums[writerPointer] = nums[readPointer];
+  for (let readerPointer = 0; readerPointer < nums.length; readerPointer++) {
+    if (writerPointer < 2 || nums[readerPointer] !== nums[writerPointer - 2]) {
+      nums[writerPointer] = nums[readerPointer];
       writerPointer++;
+      console.log(nums);
     }
   }
+
   return writerPointer;
 }
 
